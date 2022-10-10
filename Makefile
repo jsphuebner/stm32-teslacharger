@@ -58,7 +58,7 @@ Q := @
 NULL := 2>/dev/null
 endif
 
-all: directories images
+all: directories images Test
 Debug:images
 Release: images
 cleanDebug:clean
