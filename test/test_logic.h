@@ -33,16 +33,19 @@ void test_check_timeout()
 {
   bool res;
   startTime = 11;
+  
+  //above limit
   Param::SetInt(Param::test_time, 14 * 60);
   Param::SetInt(Param::timelim, 13);
-
   res = CheckTimeout();
   assert(res);
 
+  //below limit
   Param::SetInt(Param::test_time, 12 * 60);
   res = CheckTimeout();
   assert(!res);
 
+  //start time changes result
   startTime = 1100;
   res = CheckTimeout();
   assert(res);
