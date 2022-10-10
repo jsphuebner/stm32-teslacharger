@@ -37,7 +37,7 @@
 #include "stm32scheduler.h"
 #include "picontroller.h"
 #include "chargercan.h"
-#include "functions.h"
+#include "charger.h"
 
 static Stm32Scheduler* scheduler;
 static Can* can;
