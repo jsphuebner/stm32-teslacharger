@@ -201,11 +201,6 @@ static bool CheckChargerFaults()
           (active3 && ((Param::GetInt(Param::c3flag) & FLAG_FAULT) || timeouts[2]));
 }
 
-static bool CheckUnplugged()
-{
-   return IsEvseInput() && !Param::GetBool(Param::proximity);
-}
-
 static bool CheckTimeout()
 {
    uint32_t now = rtc_get_counter_val();
