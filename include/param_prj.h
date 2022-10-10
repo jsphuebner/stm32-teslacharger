@@ -108,6 +108,9 @@
     VALUE_ENTRY(c3udc,       "V",     2035 ) \
     VALUE_ENTRY(c3idc,       "A",     2036 ) \
     VALUE_ENTRY(test_time,   "s",     2037 ) \
+    VALUE_ENTRY(test_timer_flag,   "X",     2038 ) \
+    VALUE_ENTRY(test_timer_icvalue,   "X",     2039 ) \
+    // TODO: How to hide this in interface?
 
 
 /***** Enum String definitions *****/

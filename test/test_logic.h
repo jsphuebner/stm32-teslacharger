@@ -50,3 +50,26 @@ void test_check_timeout()
   res = CheckTimeout();
   assert(res);
 }
+
+void test_evse_read()
+{
+  // INP_MANUAL
+  Param::SetInt(Param::inputype, INP_MANUAL);
+  EvseRead();
+  assert(0 == Param::GetInt(Param::proximity));
+  assert(32 == Param::GetInt(Param::cablelim));
+
+  // INP_TYPE1
+  //under threshold
+  Param::SetInt(Param::inputype, INP_TYPE1);
+  EvseRead();
+  assert(1 == Param::GetInt(Param::proximity));
+  assert(40 == Param::GetInt(Param::cablelim));
+
+  //above
+  Param::SetInt(Param::inputype, INP_TYPE1);
+  AnaIn::cablelim.Set(2222);
+  EvseRead();
+  assert(0 == Param::GetInt(Param::proximity));
+  assert(0 == Param::GetInt(Param::cablelim));
+}

@@ -21,6 +21,7 @@ int main() {
       (TestCase){"test_disable_all", test_disable_all},
       (TestCase){"test_calc_totals", test_calc_totals},
       (TestCase){"test_check_timeout", test_check_timeout},
+      (TestCase){"test_evse_read", test_evse_read},
       // Example:
       //(TestCase){"Your tests name", function_name_without_brackets}
       //...

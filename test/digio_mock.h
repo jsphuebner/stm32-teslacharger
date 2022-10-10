@@ -31,8 +31,10 @@ class AnaIn{
     ANA_IN_LIST
     #undef ANA_IN_ENTRY
 
-    bool Get() { return 1; }
-    void Set() {}
+    int val = 7;
+
+    int Get() { return val; }
+    void Set(int param) { val = param;}
 };
 
 
