@@ -120,18 +120,6 @@ static void EvseRead()
    }
 }
 
-static void DisableAll()
-{
-   DigIo::hvena_out.Clear();
-   DigIo::acpres_out.Clear();
-   DigIo::evseact_out.Clear();
-   DigIo::ch1act_out.Clear();
-   DigIo::ch2act_out.Clear();
-   DigIo::ch2act_out.Clear();
-   DigIo::ch1ena_out.Clear();
-   DigIo::ch2ena_out.Clear();
-   DigIo::ch3ena_out.Clear();
-}
 
 
 static bool CheckStartCondition()

@@ -3,7 +3,6 @@
 #endif
 #include <assert.h>
 #include "test_common.h"
-#include "functions.h"
 
 void test_is_evse_input()
 {
