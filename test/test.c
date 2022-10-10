@@ -20,6 +20,7 @@ int main() {
       (TestCase){"test_check_unplugged", test_check_unplugged},
       (TestCase){"test_disable_all", test_disable_all},
       (TestCase){"test_calc_totals", test_calc_totals},
+      (TestCase){"test_check_timeout", test_check_timeout},
       // Example:
       //(TestCase){"Your tests name", function_name_without_brackets}
       //...

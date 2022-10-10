@@ -126,8 +126,9 @@ Test:
 	g++ -c -Ilibopeninv/include/ -Iinclude -o errormessage.o libopeninv/src/errormessage.cpp
 	g++ -c -Ilibopeninv/include/ -Iinclude -o printf.o libopeninv/src/printf.cpp
 	g++ -c -Ilibopeninv/include/ -Iinclude -o digio_mock.o test/digio_mock.cpp
+	g++ -c -Ilibopeninv/include/ -Iinclude -o timer_mock.o test/timer_mock.cpp
 	ar rcs libopeninv/libopeninv.a *.o
-	rm -f my_fp.o my_string.o params.o errormessage.o printf.o digio_mock.o chademo.o terminal.o
+	rm -f my_fp.o my_string.o params.o errormessage.o printf.o digio_mock.o timer_mock.o chademo.o terminal.o
 	g++ -gdwarf-2 -g test/test.c -Llibopeninv -Iinclude -lopeninv -o test/test.out && gdb -ex='set confirm on' -ex=run -ex=quit --args ./test/test.out
 cleanTest:
 	cd test && $(MAKE) clean

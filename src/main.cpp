@@ -18,8 +18,12 @@
  */
 #include <stdint.h>
 #include <libopencm3/stm32/usart.h>
+#ifdef TEST_COMMON_H
+#include "../test/timer_mock.h"
+#else
 #include <libopencm3/stm32/timer.h>
 #include <libopencm3/stm32/rtc.h>
+#endif
 #include <libopencm3/stm32/can.h>
 #include <libopencm3/stm32/iwdg.h>
 #include <libopencm3/stm32/crc.h>
@@ -42,7 +46,6 @@
 static Stm32Scheduler* scheduler;
 static Can* can;
 static PiController dcCurController;
-static uint32_t startTime;
 
 static void EvseRead()
 {
@@ -187,16 +190,6 @@ static bool CheckChargerFaults()
    return (active1 && ((Param::GetInt(Param::c1flag) & FLAG_FAULT) || timeouts[0])) ||
           (active2 && ((Param::GetInt(Param::c2flag) & FLAG_FAULT) || timeouts[1])) ||
           (active3 && ((Param::GetInt(Param::c3flag) & FLAG_FAULT) || timeouts[2]));
-}
-
-static bool CheckTimeout()
-{
-   uint32_t now = rtc_get_counter_val();
-   uint32_t timeout = Param::GetInt(Param::timelim);
-
-   timeout *= 60;
-
-   return timeout > 0 && (now - startTime) > timeout;
 }
 
 static bool CheckDelay()

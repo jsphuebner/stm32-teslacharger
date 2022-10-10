@@ -27,3 +27,23 @@ void test_calc_totals()
   s32fp udcmax = Param::Get(Param::udc);
   assert(366 == FP_TOINT(udcmax));
 }
+
+// TIMER NEEDED
+void test_check_timeout()
+{
+  bool res;
+  startTime = 11;
+  Param::SetInt(Param::test_time, 14 * 60);
+  Param::SetInt(Param::timelim, 13);
+
+  res = CheckTimeout();
+  assert(res);
+
+  Param::SetInt(Param::test_time, 12 * 60);
+  res = CheckTimeout();
+  assert(!res);
+
+  startTime = 1100;
+  res = CheckTimeout();
+  assert(res);
+}

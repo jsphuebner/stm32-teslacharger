@@ -1,6 +1,10 @@
 #include "../libopeninv/include/params.h"
 #ifdef TEST_COMMON_H
 #include "../test/digio_mock.h"
+#include "../test/timer_mock.h"
+#else
+#include <libopencm3/stm32/timer.h>
+#include <libopencm3/stm32/rtc.h>
 #endif
 
 static bool IsEvseInput();
@@ -41,5 +45,16 @@ static void CalcTotals()
 
    s32fp udcmax = MAX(u1, MAX(u2, u3));
    Param::SetFixed(Param::udc, udcmax);
+}
+
+static uint32_t startTime;
+static bool CheckTimeout()
+{
+   uint32_t now = rtc_get_counter_val();
+   uint32_t timeout = Param::GetInt(Param::timelim);
+
+   timeout *= 60;
+
+   return timeout > 0 && (now - startTime) > timeout;
 }
 
