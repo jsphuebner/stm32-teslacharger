@@ -168,3 +168,16 @@ void test_check_voltage(){
   }
   assert(res);
 }
+
+void test_reset_values_in_off_mode(){
+  Param::SetInt(Param::c1flag, 1);
+  Param::SetInt(Param::c2tmp2, 15);
+  Param::SetInt(Param::c3stt, 15);
+  Param::SetInt(Param::c3uac, 239);
+  assert(1 == Param::GetInt(Param::c1flag));
+  ResetValuesInOffMode();
+  assert(0 == Param::GetInt(Param::c1flag));
+  assert(0 == Param::GetInt(Param::c2tmp2));
+  assert(0 == Param::GetInt(Param::c3stt));
+  assert(0 == Param::GetInt(Param::c3uac));
+}

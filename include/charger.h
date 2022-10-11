@@ -11,4 +11,5 @@ void DisableAll();
 void EvseRead();
 bool CheckStartCondition();
 bool CheckVoltage();
+void ResetValuesInOffMode();
 #endif

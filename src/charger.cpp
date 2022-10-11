@@ -166,3 +166,14 @@ void EvseRead()
    }
 }
 
+void ResetValuesInOffMode()
+{
+   if (Param::GetInt(Param::state) == OFF)
+   {
+      for (int i = Param::c1stt; i <= Param::c3idc; i++)
+      {
+         Param::SetInt((Param::PARAM_NUM)i, 0);
+      }
+   }
+}
+

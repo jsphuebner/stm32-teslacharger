@@ -241,17 +241,6 @@ static void CalcEnable()
    Param::SetInt(Param::enable, enable);
 }
 
-static void ResetValuesInOffMode()
-{
-   if (Param::GetInt(Param::state) == OFF)
-   {
-      for (int i = Param::c1stt; i <= Param::c3idc; i++)
-      {
-         Param::SetInt((Param::PARAM_NUM)i, 0);
-      }
-   }
-}
-
 //sample 100ms task
 static void Ms100Task(void)
 {
