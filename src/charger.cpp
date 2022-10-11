@@ -48,6 +48,12 @@ void CalcTotals()
    Param::SetFixed(Param::udc, udcmax);
 }
 
+bool CheckStartCondition()
+{
+   return (IsEvseInput() && Param::GetBool(Param::proximity) && Param::Get(Param::cablelim) > FP_FROMFLT(1.4) && Param::GetBool(Param::enable)) ||
+         (!IsEvseInput() && Param::GetBool(Param::enable));
+}
+
 bool CheckTimeout()
 {
    uint32_t now = rtc_get_counter_val();

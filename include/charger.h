@@ -8,4 +8,5 @@ bool CheckTimeout();
 void CalcTotals();
 void DisableAll();
 void EvseRead();
+bool CheckStartCondition();
 #endif

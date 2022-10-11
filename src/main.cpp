@@ -48,11 +48,6 @@ static Can* can;
 static PiController dcCurController;
 uint32_t startTime;
 
-static bool CheckStartCondition()
-{
-   return (IsEvseInput() && Param::GetBool(Param::proximity) && Param::Get(Param::cablelim) > FP_FROMFLT(1.4) && Param::GetBool(Param::enable)) ||
-         (!IsEvseInput() && Param::GetBool(Param::enable));
-}
 
 static bool CheckVoltage()
 {

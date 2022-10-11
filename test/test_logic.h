@@ -73,4 +73,59 @@ void test_evse_read()
   EvseRead();
   assert(0 == Param::GetInt(Param::proximity));
   assert(0 == Param::GetInt(Param::cablelim));
+
+  // INP_TYPE2 and variations
+  //above threshold
+  Param::SetInt(Param::inputype, INP_TYPE2);
+  AnaIn::cablelim.Set(4222);
+  EvseRead();
+  assert(0 == Param::GetInt(Param::proximity));
+  assert(0 == Param::GetInt(Param::cablelim));
+
+  // under threshold (example)
+  Param::SetInt(Param::inputype, INP_TYPE2);
+  AnaIn::cablelim.Set(2822);
+  EvseRead();
+  assert(1 == Param::GetInt(Param::proximity));
+  assert(20 == Param::GetInt(Param::cablelim));
+}
+
+void test_check_start_condition()
+{
+  bool res;
+  //not met by default
+  Param::SetInt(Param::inputype, INP_TYPE1);
+  Param::SetInt(Param::cablelim, 0);
+  Param::SetInt(Param::proximity, 0);
+  assert(IsEvseInput());
+  res = CheckStartCondition();
+  assert(!res);
+
+  //enable override not in EVSE type
+  Param::SetInt(Param::enable, 1);
+  assert(IsEvseInput());
+  res = CheckStartCondition();
+  assert(!res);
+
+  //enable override in manual type
+  Param::SetInt(Param::inputype, INP_MANUAL);
+  assert(!IsEvseInput());
+  res = CheckStartCondition();
+  assert(res);
+
+  //EVSE start condition met
+  Param::SetInt(Param::inputype, INP_TYPE2_3P);
+  Param::SetInt(Param::enable, 1);
+  Param::SetInt(Param::proximity, 1);
+  Param::SetInt(Param::cablelim, 32);
+  res = CheckStartCondition();
+  assert(res);
+
+  //EVSE start condition not met cablelim
+  Param::SetInt(Param::inputype, INP_TYPE2_3P);
+  Param::SetInt(Param::enable, 1);
+  Param::SetInt(Param::proximity, 1);
+  Param::SetInt(Param::cablelim, 0);
+  res = CheckStartCondition();
+  assert(!res);
 }
