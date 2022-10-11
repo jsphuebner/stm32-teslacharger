@@ -52,6 +52,29 @@ void test_check_timeout()
   assert(res);
 }
 
+void test_check_delay()
+{
+  bool res;
+  startTime = 11;
+  
+  //after delay
+  Param::SetInt(Param::test_time, 14 * 60);
+  Param::SetInt(Param::timedly, 13);
+  res = CheckDelay();
+  assert(res);
+
+  //before delay 
+  Param::SetInt(Param::test_time, 12 * 60);
+  res = CheckDelay();
+  assert(!res);
+
+  //start time changes result
+  startTime = 1100;
+  res = CheckDelay();
+  assert(res);
+}
+
+
 void test_evse_read()
 {
   // INP_MANUAL

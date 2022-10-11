@@ -81,6 +81,15 @@ bool CheckTimeout()
    return timeout > 0 && (now - startTime) > timeout;
 }
 
+bool CheckDelay()
+{
+   uint32_t now = rtc_get_counter_val();
+   uint32_t start = Param::GetInt(Param::timedly) * 60;
+
+   return start <= 0 || (now - startTime) > start;
+}
+
+
 void EvseRead()
 {
    const int threshProxType1 = 2200;

@@ -5,6 +5,7 @@ extern uint32_t startTime;
 bool IsEvseInput();
 bool CheckUnplugged();
 bool CheckTimeout();
+bool CheckDelay();
 void CalcTotals();
 void DisableAll();
 void EvseRead();

@@ -93,14 +93,6 @@ static bool CheckChargerFaults()
           (active3 && ((Param::GetInt(Param::c3flag) & FLAG_FAULT) || timeouts[2]));
 }
 
-static bool CheckDelay()
-{
-   uint32_t now = rtc_get_counter_val();
-   uint32_t start = Param::GetInt(Param::timedly) * 60;
-
-   return start <= 0 || (now - startTime) > start;
-}
-
 static void CalcAcCurrentLimit()
 {
    int configuredChargers = Param::GetInt(Param::chargerena);
