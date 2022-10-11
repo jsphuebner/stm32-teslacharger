@@ -3,6 +3,7 @@
 #endif
 #include <assert.h>
 #include "test_common.h"
+uint32_t startTime;
 
 void test_calc_totals()
 {

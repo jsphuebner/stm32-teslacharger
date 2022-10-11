@@ -40,7 +40,7 @@ LDFLAGS    = -Llibopencm3/lib -T$(LDSCRIPT) -march=armv7 -nostartfiles -Wl,--gc-
 OBJSL		  = main.o hwinit.o stm32scheduler.o params.o terminal.o terminal_prj.o \
              my_string.o digio.o sine_core.o my_fp.o printf.o anain.o \
              param_save.o errormessage.o stm32_can.o \
-             picontroller.o terminalcommands.o chargercan.o
+             picontroller.o terminalcommands.o chargercan.o charger.o
 
 OBJS     = $(patsubst %.o,obj/%.o, $(OBJSL))
 vpath %.c src/ libopeninv/src
@@ -125,10 +125,11 @@ Test:
 	g++ -c -Ilibopeninv/include/ -Iinclude -o params.o libopeninv/src/params.cpp
 	g++ -c -Ilibopeninv/include/ -Iinclude -o errormessage.o libopeninv/src/errormessage.cpp
 	g++ -c -Ilibopeninv/include/ -Iinclude -o printf.o libopeninv/src/printf.cpp
+	g++ -c -Ilibopeninv/include/ -Iinclude -o charger.o src/charger.cpp -D TEST_COMMON_H
 	g++ -c -Ilibopeninv/include/ -Iinclude -o digio_mock.o test/digio_mock.cpp
 	g++ -c -Ilibopeninv/include/ -Iinclude -o timer_mock.o test/timer_mock.cpp
 	ar rcs libopeninv/libopeninv.a *.o
-	rm -f my_fp.o my_string.o params.o errormessage.o printf.o digio_mock.o timer_mock.o chademo.o terminal.o
+	rm -f my_fp.o my_string.o params.o errormessage.o printf.o digio_mock.o timer_mock.o terminal.o
 	g++ -gdwarf-2 -g test/test.c -Llibopeninv -Iinclude -lopeninv -o test/test.out && gdb -ex='set confirm on' -ex=run -ex=quit --args ./test/test.out
 cleanTest:
 	cd test && $(MAKE) clean

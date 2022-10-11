@@ -46,7 +46,7 @@
 static Stm32Scheduler* scheduler;
 static Can* can;
 static PiController dcCurController;
-
+uint32_t startTime;
 
 static bool CheckStartCondition()
 {
