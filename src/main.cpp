@@ -48,23 +48,6 @@ static Can* can;
 static PiController dcCurController;
 uint32_t startTime;
 
-
-static bool CheckVoltage()
-{
-   static int timeout = 0;
-
-   if (Param::Get(Param::udc) > Param::Get(Param::udclim))
-   {
-      timeout++;
-   }
-   else
-   {
-      timeout = 0;
-   }
-
-   return timeout > 10;
-}
-
 static bool CheckChargerFaults()
 {
    const int acPresentThresh = 70;

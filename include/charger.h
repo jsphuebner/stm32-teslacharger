@@ -9,4 +9,5 @@ void CalcTotals();
 void DisableAll();
 void EvseRead();
 bool CheckStartCondition();
+bool CheckVoltage();
 #endif

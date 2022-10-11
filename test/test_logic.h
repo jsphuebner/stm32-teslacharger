@@ -129,3 +129,19 @@ void test_check_start_condition()
   res = CheckStartCondition();
   assert(!res);
 }
+
+void test_check_voltage(){
+  bool res;
+  Param::SetInt(Param::udc, 400);
+  Param::SetInt(Param::udclim, 390);
+
+  // tolerate up to ten one off spikes
+  res = CheckVoltage();
+  assert(!res);
+
+  // drop out if received more than ten 
+  for(int i =0; i < 15;i++){
+    res = CheckVoltage();
+  }
+  assert(res);
+}

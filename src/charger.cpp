@@ -54,6 +54,23 @@ bool CheckStartCondition()
          (!IsEvseInput() && Param::GetBool(Param::enable));
 }
 
+bool CheckVoltage()
+{
+   static int timeout = 0;
+
+   if (Param::Get(Param::udc) > Param::Get(Param::udclim))
+   {
+      timeout++;
+   }
+   else
+   {
+      timeout = 0;
+   }
+
+   return timeout > 10;
+}
+
+
 bool CheckTimeout()
 {
    uint32_t now = rtc_get_counter_val();
