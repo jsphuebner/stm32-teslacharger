@@ -125,6 +125,7 @@ Test:
 	g++ -c -Ilibopeninv/include/ -Iinclude -o params.o libopeninv/src/params.cpp
 	g++ -c -Ilibopeninv/include/ -Iinclude -o errormessage.o libopeninv/src/errormessage.cpp
 	g++ -c -Ilibopeninv/include/ -Iinclude -o printf.o libopeninv/src/printf.cpp
+	g++ -c -Ilibopeninv/include/ -Iinclude -o picontroller.o libopeninv/src/picontroller.cpp
 	g++ -c -Ilibopeninv/include/ -Iinclude -o charger.o src/charger.cpp -D TEST_COMMON_H
 	g++ -c -Ilibopeninv/include/ -Iinclude -o digio_mock.o test/digio_mock.cpp
 	g++ -c -Ilibopeninv/include/ -Iinclude -o timer_mock.o test/timer_mock.cpp

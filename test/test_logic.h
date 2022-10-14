@@ -3,7 +3,6 @@
 #endif
 #include <assert.h>
 #include "test_common.h"
-uint32_t startTime;
 
 void test_calc_totals()
 {
@@ -238,3 +237,7 @@ void test_calc_enable(){
   //}
   //assert(3 == canenable);
 }
+
+// TODO: test_charger_state_machine(){}
+// TODO: test_calc_ac_current_limit(){}
+// TODO: test_check_charger_faults(){}

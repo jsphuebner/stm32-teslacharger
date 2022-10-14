@@ -3,4 +3,6 @@
 #include "timer_mock.h"
 #include "digio_mock.h"
 #include "charger.h"
+uint32_t startTime;
+PiController dcCurController;
 #endif
