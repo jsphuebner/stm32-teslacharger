@@ -1,4 +1,5 @@
 #include "my_math.h"
+#include "errormessage.h"
 #include "charger.h"
 #ifdef TEST_COMMON_H
 #include "../test/test_common.h"
@@ -175,5 +176,35 @@ void ResetValuesInOffMode()
          Param::SetInt((Param::PARAM_NUM)i, 0);
       }
    }
+}
+
+void CalcEnable()
+{
+   static int recheckCan = 10;
+   bool enablePol = Param::GetBool(Param::enablepol);
+   bool enable = DigIo::enable_in.Get() ^ enablePol;
+
+   enable &= !Param::GetBool(Param::cancontrol) || Param::GetBool(Param::canenable);
+
+   if (Param::GetBool(Param::cancontrol))
+   {
+      if (recheckCan == 0)
+      {
+         if (Param::GetInt(Param::canenable) == 3)
+         {
+            Param::SetInt(Param::canenable, 0);
+            ErrorMessage::Post(ERR_EXTCAN);
+         }
+         else
+         {
+            Param::SetInt(Param::canenable, 3); //Must be overwritten by CAN message within the next second
+         }
+         recheckCan = 10;
+      }
+
+      recheckCan--;
+   }
+
+   Param::SetInt(Param::enable, enable);
 }
 

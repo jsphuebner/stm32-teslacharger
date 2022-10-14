@@ -211,36 +211,6 @@ static void ChargerStateMachine()
    Param::SetInt(Param::state, state);
 }
 
-static void CalcEnable()
-{
-   static int recheckCan = 10;
-   bool enablePol = Param::GetBool(Param::enablepol);
-   bool enable = DigIo::enable_in.Get() ^ enablePol;
-
-   enable &= !Param::GetBool(Param::cancontrol) || Param::GetBool(Param::canenable);
-
-   if (Param::GetBool(Param::cancontrol))
-   {
-      if (recheckCan == 0)
-      {
-         if (Param::GetInt(Param::canenable) == 3)
-         {
-            Param::SetInt(Param::canenable, 0);
-            ErrorMessage::Post(ERR_EXTCAN);
-         }
-         else
-         {
-            Param::SetInt(Param::canenable, 3); //Must be overwritten by CAN message within the next second
-         }
-         recheckCan = 10;
-      }
-
-      recheckCan--;
-   }
-
-   Param::SetInt(Param::enable, enable);
-}
-
 //sample 100ms task
 static void Ms100Task(void)
 {

@@ -26,6 +26,7 @@ int main() {
       (TestCase){"test_check_start_condition", test_check_start_condition},
       (TestCase){"test_check_voltage", test_check_voltage},
       (TestCase){"test_reset_values_in_off_mode", test_reset_values_in_off_mode},
+      (TestCase){"test_calc_enable", test_calc_enable},
       // Example:
       //(TestCase){"Your tests name", function_name_without_brackets}
       //...

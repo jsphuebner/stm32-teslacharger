@@ -181,3 +181,60 @@ void test_reset_values_in_off_mode(){
   assert(0 == Param::GetInt(Param::c3stt));
   assert(0 == Param::GetInt(Param::c3uac));
 }
+
+void test_calc_enable(){
+  
+  int enable;
+
+  //default off
+  Param::SetInt(Param::enable, 0);
+  Param::SetInt(Param::enablepol, 0); // polarity switch for DigIo
+  Param::SetInt(Param::cancontrol, 0);
+  Param::SetInt(Param::canenable, 0);
+  DigIo::enable_in.Clear();
+  CalcEnable();
+  enable = Param::GetInt(Param::enable);
+  assert(!enable);
+
+  //only DigIo high -> on
+  Param::SetInt(Param::enable, 0);
+  Param::SetInt(Param::enablepol, 0);
+  Param::SetInt(Param::cancontrol, 0);
+  Param::SetInt(Param::canenable, 0);
+  DigIo::enable_in.Set();
+  CalcEnable();
+  enable = Param::GetInt(Param::enable);
+  assert(enable);
+
+  //DigIo and enablepol high -> off
+  Param::SetInt(Param::enable, 0);
+  Param::SetInt(Param::enablepol, 1);
+  Param::SetInt(Param::cancontrol, 0);
+  Param::SetInt(Param::canenable, 0);
+  DigIo::enable_in.Set();
+  CalcEnable();
+  enable = Param::GetInt(Param::enable);
+  assert(!enable);
+
+
+  // DigIo & canenable -> on
+  Param::SetInt(Param::enable, 0);
+  Param::SetInt(Param::enablepol, 0);
+  Param::SetInt(Param::cancontrol, 0);
+  Param::SetInt(Param::canenable, 2);
+  DigIo::enable_in.Set();
+  CalcEnable();
+  enable = Param::GetInt(Param::enable);
+  assert(enable);
+
+  //recheck can after 10+ calls
+  // TODO unfinished test
+  //int canenable = Param::GetInt(Param::canenable);
+  //Param::SetInt(Param::cancontrol, 1);
+  //for(int i =0; i < 15;i++){
+  //  CalcEnable();
+  //  enable = Param::GetInt(Param::enable);
+  //  assert(enable);
+  //}
+  //assert(3 == canenable);
+}

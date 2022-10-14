@@ -12,4 +12,5 @@ void EvseRead();
 bool CheckStartCondition();
 bool CheckVoltage();
 void ResetValuesInOffMode();
+void CalcEnable();
 #endif
