@@ -80,6 +80,7 @@
 		<Unit filename="libopeninv/src/terminal.cpp" />
 		<Unit filename="libopeninv/src/terminalcommands.cpp" />
 		<Unit filename="linker.ld" />
+		<Unit filename="src/charger.cpp" />
 		<Unit filename="src/chargercan.cpp" />
 		<Unit filename="src/hwinit.cpp" />
 		<Unit filename="src/main.cpp" />

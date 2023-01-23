@@ -30,7 +30,7 @@ void DisableAll()
    DigIo::evseact_out.Clear();
    DigIo::ch1act_out.Clear();
    DigIo::ch2act_out.Clear();
-   DigIo::ch2act_out.Clear();
+   DigIo::ch3act_out.Clear();
    DigIo::ch1ena_out.Clear();
    DigIo::ch2ena_out.Clear();
    DigIo::ch3ena_out.Clear();

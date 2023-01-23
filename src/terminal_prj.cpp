@@ -60,7 +60,7 @@ extern "C" const TERM_CMD termCmds[] =
   { NULL, NULL }
 };
 
-static void PrintCanMap(Param::PARAM_NUM param, uint32_t canid, uint8_t offset, uint8_t length, float gain, bool rx)
+void PrintCanMap(Param::PARAM_NUM param, uint32_t canid, uint8_t offsetBits, uint8_t length, float gain, int8_t offset, bool rx)
 {
    const char* name = Param::GetAttrib(param)->name;
    fprintf(curTerm, "can ");
@@ -69,7 +69,7 @@ static void PrintCanMap(Param::PARAM_NUM param, uint32_t canid, uint8_t offset, 
       fprintf(curTerm, "rx ");
    else
       fprintf(curTerm, "tx ");
-   fprintf(curTerm, "%s %d %d %d %f\r\n", name, canid, offset, length, FP_FROMFLT(gain));
+   fprintf(curTerm, "%s %d %d %d %f %d\r\n", name, canid, offsetBits, length, FP_FROMFLT(gain), offset);
 }
 
 //cantx param id offset len gain

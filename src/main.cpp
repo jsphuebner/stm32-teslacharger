@@ -79,11 +79,12 @@ static void MapChargerMessages()
 {
    uint32_t dummyId;
    uint8_t dummyOfs, dummyLen;
+   int8_t dummyAdd;
    float dummyGain;
    bool dummyrx;
 
    //check sample value, if it is mapped assume valid CAN map
-   if (can->FindMap(Param::hwaclim, dummyId, dummyOfs, dummyLen, dummyGain, dummyrx)) return;
+   if (can->FindMap(Param::hwaclim, dummyId, dummyOfs, dummyLen, dummyGain, dummyAdd, dummyrx)) return;
 
    can->Clear();
 
